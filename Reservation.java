@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -65,51 +65,4 @@ class Reservation implements java.io.Serializable{
   public static final int room_three_cost = 75;
   public static final int breakfast_cost = 8;
   private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-}
-
-public class HelloWorld {
-  public static final String file_name = "./reservations.ser";
-  
-  public static ArrayList<Reservation> read(String filename){
-    ArrayList<Reservation> in_resvs = new ArrayList<Reservation>();
-    
-    try {
-      FileInputStream fileIn = new FileInputStream(filename);
-      ObjectInputStream in = new ObjectInputStream(fileIn);
-      in_resvs = (ArrayList<Reservation>) in.readObject();
-      in.close();
-      fileIn.close();
-    } catch (IOException i) {
-      System.out.println("Input error");
-      i.printStackTrace();
-    } catch (ClassNotFoundException c) {
-      System.out.println("ArrayList class not found");
-      c.printStackTrace();
-    }
-
-    return in_resvs;
-  }
-
-  public static void write(String filename, ArrayList<Reservation> resvs){
-    try { 
-      FileOutputStream fout = new FileOutputStream("./reservations.ser", false);
-      ObjectOutputStream oos = new ObjectOutputStream(fout);
-      oos.writeObject(resvs);
-      oos.close();
-      fout.close();
-    }
-    catch (IOException i) {
-      i.printStackTrace();
-    }
-  }
-
-  public static void append(String filename, ArrayList<Reservation> resvs){
-    if (resvs.size() == 0) return;
-    ArrayList<Reservation> stored = read(filename);
-    stored.addAll(resvs);
-    write(filename, stored);
-  }
-
-      input.close();
-    }
 }
