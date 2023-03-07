@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -67,26 +68,47 @@ class Reservation implements java.io.Serializable{
 }
 
 public class HelloWorld {
-    public static void main(String[] args) {
-      Scanner input = new Scanner(System.in);
-            
-      // System.out.print("Enter first name: ");
-      // String firstName = input.next();
-      // System.out.print("Enter sur name: ");
-      // String surName = input.next();
-      // System.out.print("Enter phone: ");
-      // String phone = input.next();
-      // System.out.print("Enter room type (1, 2 or 3): ");
-      // Short type = input.nextShort();
-      System.out.print("Enter arrival date (dd-mm-yyyy): ");
-      String arrival = input.next();
-      System.out.print("Enter departure date (dd-mm-yyyy): ");
-      String departure = input.next();
-      
-      
-      Reservation r1 = new Reservation("", "", "", (short)2, arrival, departure);
-      // Reservation r1 = new Reservation(firstName, surName, phone, type, arrival, departure);
-      // r1.get_cost();
+  public static final String file_name = "./reservations.ser";
+  
+  public static ArrayList<Reservation> read(String filename){
+    ArrayList<Reservation> in_resvs = new ArrayList<Reservation>();
+    
+    try {
+      FileInputStream fileIn = new FileInputStream(filename);
+      ObjectInputStream in = new ObjectInputStream(fileIn);
+      in_resvs = (ArrayList<Reservation>) in.readObject();
+      in.close();
+      fileIn.close();
+    } catch (IOException i) {
+      System.out.println("Input error");
+      i.printStackTrace();
+    } catch (ClassNotFoundException c) {
+      System.out.println("ArrayList class not found");
+      c.printStackTrace();
+    }
+
+    return in_resvs;
+  }
+
+  public static void write(String filename, ArrayList<Reservation> resvs){
+    try { 
+      FileOutputStream fout = new FileOutputStream("./reservations.ser", false);
+      ObjectOutputStream oos = new ObjectOutputStream(fout);
+      oos.writeObject(resvs);
+      oos.close();
+      fout.close();
+    }
+    catch (IOException i) {
+      i.printStackTrace();
+    }
+  }
+
+  public static void append(String filename, ArrayList<Reservation> resvs){
+    if (resvs.size() == 0) return;
+    ArrayList<Reservation> stored = read(filename);
+    stored.addAll(resvs);
+    write(filename, stored);
+  }
 
       input.close();
     }
