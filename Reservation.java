@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.io.*;
 
-class Reservation implements java.io.Serializable{
+public class Reservation implements java.io.Serializable{
   public Reservation(
     String FirstName, String SurName, String Phone, short Type, boolean breakfast, String Arrival, String Departure
   ){
