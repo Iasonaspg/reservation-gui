@@ -1,3 +1,5 @@
+package mygroup.test;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.temporal.ChronoUnit;
@@ -9,26 +11,26 @@ public class Reservation implements java.io.Serializable{
   public Reservation(
     String FirstName, String SurName, String Phone, short Type, boolean breakfast, String Arrival, String Departure
   ){
-    FirstName_ = FirstName;
-    SurName_ = SurName;
-    Phone_ = Phone;
-    Type_ = Type;
+    firstName_ = FirstName;
+    lastName_ = SurName;
+    phone_ = Phone;
+    type_ = Type;
     breakfast_ = breakfast;
-    Arrival_ = LocalDate.parse(Arrival, dtf);
-    Departure_ = LocalDate.parse(Departure, dtf);
+    arrival_ = LocalDate.parse(Arrival, dtf);
+    departure_ = LocalDate.parse(Departure, dtf);
     calculate_cost();
   }
 
   private void calculate_cost(){
-    // System.out.println("Arrival date: " + Arrival_);
-    int daysBetween = (int) ChronoUnit.DAYS.between(Arrival_, Departure_);
+    // System.out.println("Arrival date: " + arrival_);
+    int daysBetween = (int) ChronoUnit.DAYS.between(arrival_, departure_);
     cost_ = daysBetween * cost_per_day();
     // System.out.println ("Days: " + daysBetween + " and cost: " + cost_);
   }
 
   private int cost_per_day(){
     int room_cost = 0;
-    switch (Type_){
+    switch (type_){
       case 1:
         room_cost = room_one_cost;
         break;
@@ -41,24 +43,16 @@ public class Reservation implements java.io.Serializable{
       default:
        // exception
     }
-    int break_cost = (breakfast_) ? Type_ * breakfast_cost : 0;
+    int break_cost = (breakfast_) ? type_ * breakfast_cost : 0;
     
     return room_cost + break_cost;
-  }
-
-  public String get_name(){
-    return FirstName_ + "  " + SurName_;
-  }
-  
-  public int get_cost(){
-    return cost_;
   }
 
   public static ArrayList<Reservation> searchByName(String filename, String firstName, String lastName){
     ArrayList<Reservation> resvs = read(filename);
     ArrayList<Reservation> found = new ArrayList<Reservation>();
     for (Reservation resv : resvs){
-      if ( (resv.FirstName_.equals(firstName)) && (resv.SurName_.equals(lastName)) ){
+      if ( (resv.firstName_.equals(firstName)) && (resv.lastName_.equals(lastName)) ){
         found.add(resv);
       }
     }
@@ -69,7 +63,7 @@ public class Reservation implements java.io.Serializable{
     ArrayList<Reservation> resvs = read(filename);
     ArrayList<Reservation> found = new ArrayList<Reservation>();
     for (Reservation resv : resvs){
-      if ( (resv.Arrival_.equals(arrival)) && (resv.Departure_.equals(departure)) ){
+      if ( (resv.arrival_.equals(arrival)) && (resv.departure_.equals(departure)) ){
         found.add(resv);
       }
     }
@@ -114,17 +108,64 @@ public class Reservation implements java.io.Serializable{
     stored.addAll(resvs);
     write(filename, stored);
   }
+  
+  public String getFirstName(){
+      return firstName_;
+  }
+  
+  public String getLastName(){
+      return lastName_;
+  }
+  
+  public String getPhone(){
+      return phone_;
+  }
+  
+  public String getRoomType(){
+      String type = "";
+        switch (type_){
+            case 1:
+                type = "single";
+                break;
+            case 2:
+                type = "double";
+                break;
+            case 3:
+                type = "triple";
+        }
+        return type;
+  }
+  
+  public boolean getBreakfast(){
+      return breakfast_;
+  }
+  
+  public String getArrival(){
+      return dtf.format(arrival_);
+  }
+  
+  public String getDeparture(){
+      return dtf.format(departure_);
+  }
+  
+  public String get_name(){
+    return firstName_ + "  " + lastName_;
+  }
+  
+  public int get_cost(){
+    return cost_;
+  }
 
   private int cost_;
-  private String FirstName_, SurName_, Phone_;
-  private short Type_;
+  private String firstName_, lastName_, phone_;
+  private short type_;
   private boolean breakfast_;
-  private LocalDate Arrival_, Departure_;
+  private LocalDate arrival_, departure_;
 
   public static final int room_one_cost = 50;
   public static final int room_two_cost = 65;
   public static final int room_three_cost = 75;
   public static final int breakfast_cost = 8;
-  private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+  public static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // TODO: na ginei private
   public static final String file_name = "/home/iasonas/Desktop/reservations.ser";
 }
