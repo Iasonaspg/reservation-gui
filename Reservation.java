@@ -1,5 +1,5 @@
 import java.util.Scanner;
-// import java.util.ArrayList;
+import java.util.ArrayList;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -54,6 +54,27 @@ public class Reservation implements java.io.Serializable{
     return cost_;
   }
 
+  public static ArrayList<Reservation> searchByName(String filename, String firstName, String lastName){
+    ArrayList<Reservation> resvs = read(filename);
+    ArrayList<Reservation> found = new ArrayList<Reservation>();
+    for (Reservation resv : resvs){
+      if ( (resv.FirstName_.equals(firstName)) && (resv.SurName_.equals(lastName)) ){
+        found.add(resv);
+      }
+    }
+    return found;
+  }
+
+  public static ArrayList<Reservation> searchByDate(String filename, LocalDate arrival, LocalDate departure){
+    ArrayList<Reservation> resvs = read(filename);
+    ArrayList<Reservation> found = new ArrayList<Reservation>();
+    for (Reservation resv : resvs){
+      if ( (resv.Arrival_.equals(arrival)) && (resv.Departure_.equals(departure)) ){
+        found.add(resv);
+      }
+    }
+    return found;
+  }
 
   public static ArrayList<Reservation> read(String filename){
     ArrayList<Reservation> in_resvs = new ArrayList<Reservation>();
@@ -105,4 +126,5 @@ public class Reservation implements java.io.Serializable{
   public static final int room_three_cost = 75;
   public static final int breakfast_cost = 8;
   private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+  public static final String file_name = "/home/iasonas/Desktop/reservations.ser";
 }
