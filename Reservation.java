@@ -54,6 +54,46 @@ public class Reservation implements java.io.Serializable{
     return cost_;
   }
 
+
+  public static ArrayList<Reservation> read(String filename){
+    ArrayList<Reservation> in_resvs = new ArrayList<Reservation>();
+    
+    try {
+      FileInputStream fileIn = new FileInputStream(filename);
+      ObjectInputStream in = new ObjectInputStream(fileIn);
+      in_resvs = (ArrayList<Reservation>) in.readObject();
+      in.close();
+      fileIn.close();
+    } catch (IOException i) {
+
+    } catch (ClassNotFoundException c) {
+      System.out.println("ArrayList class not found");
+      c.printStackTrace();
+    }
+
+    return in_resvs;
+  }
+
+  public static void write(String filename, ArrayList<Reservation> resvs){
+    try { 
+      FileOutputStream fout = new FileOutputStream(filename, false);
+      ObjectOutputStream oos = new ObjectOutputStream(fout);
+      oos.writeObject(resvs);
+      oos.close();
+      fout.close();
+    }
+    catch (IOException i) {
+      i.printStackTrace();
+    }
+  }
+
+  public static void append(String filename, ArrayList<Reservation> resvs){
+    if (resvs.size() == 0) return;
+    ArrayList<Reservation> stored = read(filename);
+    stored.addAll(resvs);
+    write(filename, stored);
+  }
+
   private int cost_;
   private String FirstName_, SurName_, Phone_;
   private short Type_;
