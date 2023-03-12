@@ -1,5 +1,12 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
+/**
+ *
+ * @author iasonas
+ */
 public class gui extends javax.swing.JFrame {
 
     /**
@@ -7,21 +14,7 @@ public class gui extends javax.swing.JFrame {
      */
     public gui() {
         initComponents();
-        jLabel1.setVisible(false);
-        jFirstName.setVisible(false);
-        jLabel2.setVisible(false);
-        jLastName.setVisible(false);
-        jLabel3.setVisible(false);
-        jPhone.setVisible(false);
-        jLabel4.setVisible(false);
-        jRoomBox.setVisible(false);
-        jLabel5.setVisible(false);
-        jBreakBox.setVisible(false);
-        jLabel6.setVisible(false);
-        jArrival.setVisible(false);
-        jLabel7.setVisible(false);
-        jDeparture.setVisible(false);
-        jButtonInsert.setVisible(false);
+        myInitComponents();
     }
 
     /**
@@ -32,6 +25,223 @@ public class gui extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
+
+        jShowRecButton = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jSearchFName = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jSearchArr = new javax.swing.JTextField();
+        jSearchCrit = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jSearchLName = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jSearchDep = new javax.swing.JTextField();
+        jSearchButton = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jShowRecButton.setText("Show records");
+        jShowRecButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jShowRecButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("First Name");
+
+        jSearchFName.setColumns(5);
+        jSearchFName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSearchFNameActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Arrival");
+
+        jSearchArr.setColumns(5);
+        jSearchArr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSearchArrActionPerformed(evt);
+            }
+        });
+
+        jSearchCrit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Date" }));
+
+        jLabel8.setText("Last Name");
+
+        jSearchLName.setColumns(5);
+
+        jLabel11.setText("Departure");
+
+        jSearchDep.setColumns(5);
+        jSearchDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSearchDepActionPerformed(evt);
+            }
+        });
+
+        jSearchButton.setText("Search");
+        jSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSearchButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(515, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(jLabel10))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jSearchFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)))
+                            .addComponent(jSearchArr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSearchLName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jSearchDep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(72, 72, 72))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSearchButton)
+                            .addComponent(jSearchCrit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(104, 104, 104))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jShowRecButton)
+                        .addGap(93, 93, 93))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jShowRecButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSearchButton)
+                .addGap(3, 3, 3)
+                .addComponent(jSearchCrit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSearchFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSearchLName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSearchDep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSearchArr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(239, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>                        
+
+    private void jShowRecButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
+        
+    }                                              
+
+    private void jSearchArrActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+    }                                          
+
+    private void jSearchFNameActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+    }                                            
+
+    private void jSearchDepActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+    }                                          
+
+    private void display_results(ArrayList<Reservation> results){
+     // Frame initialization
+        JFrame f = new JFrame();
+ 
+        // Frame Title
+        f.setTitle("Reservations found");
+ 
+        // Data to be displayed in the JTable
+        String[][] data = {
+            { "Kundan Kumar Jha", "4031", "CSE" },
+            { "Anand Jha", "6014", "IT" }
+        };
+ 
+        // Column Names
+        String[] columnNames = { "First Name", "Last Name", "Phone", "Room type",
+            "Breakfast", "Arrival", "Departure", "Total cost"
+        };
+        
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+        
+        for (Reservation resv : results){
+            String firstName = resv.getFirstName();
+            String lastName = resv.getLastName();
+            String phone = resv.getPhone();
+            String roomType = resv.getRoomType();
+            boolean breakfast = resv.getBreakfast();
+            String arrival = resv.getArrival();
+            String departure = resv.getDeparture();
+            int cost = resv.get_cost();
+            
+            Object[] row = {firstName, lastName, phone, roomType, breakfast, arrival, departure, cost};
+            tableModel.addRow(row);
+        }
+        
+        JTable j = new JTable(tableModel);
+ 
+        // Initializing the JTable
+        j.setBounds(30, 40, 600, 300);
+ 
+        // adding it to JScrollPane
+        JScrollPane sp = new JScrollPane(j);
+        f.add(sp);
+        // Frame Size
+        f.setSize(600, 200);
+        // Frame Visible = true
+        f.setVisible(true); 
+    }
+    
+    private void jSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+        String searchCriterion = jSearchCrit.getItemAt(jSearchCrit.getSelectedIndex());
+        
+        ArrayList<Reservation> found;
+        if (searchCriterion.equals("Name")){
+            String firstName = jSearchFName.getText();
+            String lastName = jSearchLName.getText();
+            found = Reservation.searchByName(Reservation.file_name, firstName, lastName);
+        }else{
+            LocalDate arrival = LocalDate.parse(jSearchArr.getText(), Reservation.dtf);
+            LocalDate departure = LocalDate.parse(jSearchDep.getText(), Reservation.dtf);
+            found = Reservation.searchByDate(Reservation.file_name, arrival, departure);
+        }
+        
+        for (Reservation res : found){
+          System.out.println("Name: " + res.get_name() + "  cost: " + res.get_cost());
+        }
+        
+        display_results(found);
+    }                                             
+
+    private void myInitComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
@@ -53,8 +263,8 @@ public class gui extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 800));
-        setPreferredSize(new java.awt.Dimension(600, 500));
+        setMaximumSize(new java.awt.Dimension(1000, 800));
+        setPreferredSize(new java.awt.Dimension(900, 600));
 
         jLabel1.setText("First Name");
 
@@ -177,6 +387,22 @@ public class gui extends javax.swing.JFrame {
         );
 
         pack();
+        
+        jLabel1.setVisible(false);
+        jFirstName.setVisible(false);
+        jLabel2.setVisible(false);
+        jLastName.setVisible(false);
+        jLabel3.setVisible(false);
+        jPhone.setVisible(false);
+        jLabel4.setVisible(false);
+        jRoomBox.setVisible(false);
+        jLabel5.setVisible(false);
+        jBreakBox.setVisible(false);
+        jLabel6.setVisible(false);
+        jArrival.setVisible(false);
+        jLabel7.setVisible(false);
+        jDeparture.setVisible(false);
+        jButtonInsert.setVisible(false);
     }// </editor-fold>                        
 
     private void jArrivalActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -193,11 +419,11 @@ public class gui extends javax.swing.JFrame {
         String arrival = jArrival.getText();
         String departure = jDeparture.getText();
         
-        boolean breakfastBoolean = (breakfast == "Yes") ? true : false;
+        boolean breakfastBoolean = (breakfast.equals("Yes")) ? true : false;
         
         ArrayList<Reservation> resvs = new ArrayList<Reservation>();
         resvs.add(new Reservation(firstName, lastName, phone, roomTypeNumber(roomType), breakfastBoolean, arrival, departure) );
-        Serialization.append(Serialization.file_name, resvs);
+        Reservation.append(Reservation.file_name, resvs);
         
         jFirstName.setText("");
         jLastName.setText("");
@@ -205,10 +431,10 @@ public class gui extends javax.swing.JFrame {
         jArrival.setText("");
         jDeparture.setText("");
         
-        ArrayList<Reservation> in_resvs = Serialization.read(Serialization.file_name);
-        for (Reservation res : in_resvs){
-          System.out.println("Name: " + res.get_name() + "  cost: " + res.get_cost());
-        }
+//        ArrayList<Reservation> in_resvs = Reservation.read(Reservation.file_name);
+//        for (Reservation res : in_resvs){
+//          System.out.println("Name: " + res.get_name() + "  cost: " + res.get_cost());
+//        }
     }                                             
 
     private void jRoomBoxActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -249,7 +475,6 @@ public class gui extends javax.swing.JFrame {
         return type;
     }
     
-    
     /**
      * @param args the command line arguments
      */
@@ -277,6 +502,25 @@ public class gui extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -286,7 +530,6 @@ public class gui extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField jArrival;
@@ -305,9 +548,17 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JTextField jLastName;
     private javax.swing.JTextField jPhone;
     private javax.swing.JComboBox<String> jRoomBox;
+    // Variables declaration - do not modify                     
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jSearchArr;
+    private javax.swing.JButton jSearchButton;
+    private javax.swing.JComboBox<String> jSearchCrit;
+    private javax.swing.JTextField jSearchDep;
+    private javax.swing.JTextField jSearchFName;
+    private javax.swing.JTextField jSearchLName;
+    private javax.swing.JButton jShowRecButton;
     // End of variables declaration                   
-
-
-
-
 }
